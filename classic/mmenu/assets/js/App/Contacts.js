@@ -50,9 +50,79 @@
       value: function process() {
         babelHelpers.get(AppContacts.prototype.__proto__ || Object.getPrototypeOf(AppContacts.prototype), 'process', this).call(this);
 
+        this.addContactList();
+
         this.setupActionBtn();
         this.bindListChecked();
         this.handlSlidePanelContent();
+      }
+    }, {
+      key: 'addContactList',
+      value: function addContactList(checked) {
+        alert("loaded.");
+
+        var calendarsList =[];
+        var jqxhr=$.ajax({
+             type: 'POST',
+             url: '/data/employee.json',
+             async: false,
+             success: function(data) {
+               //alert(2222);
+               //alert(data);
+               //s\alert(data.length);
+               for(var i=0;i<data.length;i++){
+                 var name=data[i]["name"];
+                 var mail=data[i]["mail"];
+                 var phone=data[i]["phone"];
+
+
+
+
+                  var employeeItem = '' +
+                  '              <tr data-url="panel.tpl" data-toggle="slidePanel">' +
+                  '                <td class="pre-cell"></td>' +
+                  '                <td class="cell-30">' +
+                  '                  <span class="checkbox-custom checkbox-primary checkbox-lg">' +
+                  '                    <input type="checkbox" class="contacts-checkbox selectable-item" id="contacts_1"' +
+                  '                    />' +
+                  '                    <label for="contacts_1"></label>' +
+                  '                  </span>' +
+                  '                </td>' +
+                  '                <td class="cell-300">' +
+                  '                  <a class="avatar" href="javascript:void(0)">' +
+                  '                    <img class="img-fluid" src="../../../../global/portraits/1.jpg" alt="...">' +
+                  '                  </a>' + name +
+                  '                </td>' +
+                  '                <td class="cell-300">'+phone+'</td>' +
+                  '                <td>'+mail+'</td>' +
+                  '                <td class="suf-cell"></td>' +
+                  '              </tr>';
+
+                  $('#employeeList').append(employeeItem);
+
+               }
+
+             },
+             fail: function(jqXHR, textStatus, errorThrown) {
+               alert(jqXHR.status);
+               alert(textStatus);
+               alert(errorThrown);
+
+               alert( "error" );
+             }
+        });
+
+
+        /*
+        var api = this.$actionBtn.data('actionBtn');
+        if (checked) {
+          api.show();
+        } else {
+          api.hide();
+        }
+
+        this.states.checked = checked;
+        */
       }
     }, {
       key: 'listChecked',

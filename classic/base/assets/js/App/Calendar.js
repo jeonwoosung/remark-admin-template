@@ -68,7 +68,7 @@
           backgroundColor: (0, _Config.colors)('red', 600),
           borderColor: (0, _Config.colors)('red', 600)
         }, {
-          title: 'Conference',
+          title: 'Conference22222',
           start: '2016-10-11',
           end: '2016-10-13'
         }, {

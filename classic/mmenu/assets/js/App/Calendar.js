@@ -52,6 +52,39 @@
     }, {
       key: 'handleFullcalendar',
       value: function handleFullcalendar() {
+
+        var myEvents =[];
+        var jqxhr=$.ajax({
+             type: 'POST',
+             url: '/data/events.json',
+//             data: "worktype=1&" + param,
+             async: false,
+             success: function(data) {
+                  if(data != null) {
+                       // Do somothing when data is not null
+                  }
+//                  alert(111);
+//                  alert(data);
+                  myEvents=data;
+             },
+             fail: function(jqXHR, textStatus, errorThrown) {
+               alert(jqXHR.status);
+               alert(textStatus);
+               alert(errorThrown);
+
+               alert( "error" );
+             }
+        })
+
+//        var jqxhr = $.get( "/data/events.json" )
+
+
+//alert(JSON.stringify(myEvents));
+//alert(JSON.stringify((0, _Config.colors)('red', 600)));
+
+
+
+/*
         var myEvents = [{
           title: 'All Day Event',
           start: '2016-10-01'
@@ -68,7 +101,7 @@
           backgroundColor: (0, _Config.colors)('red', 600),
           borderColor: (0, _Config.colors)('red', 600)
         }, {
-          title: 'Conference',
+          title: 'Conference232222',
           start: '2016-10-11',
           end: '2016-10-13'
         }, {
@@ -90,7 +123,7 @@
         }, {
           title: 'Birthday Party',
           start: '2016-10-13T07:00:00'
-        }];
+        }];*/
 
         var myOptions = {
           header: {
@@ -274,14 +307,92 @@
             }
           });
         });
+
+/*
+                $('.calendars-list').each(function () {
+                  var $this = $(this),
+                      color = $this.data('color').split('-');
+                  $this.data('event', {
+                    title: $this.data('title'),
+                    stick: $this.data('stick'),
+                    backgroundColor: (0, _Config.colors)(color[0], color[1]),
+                    borderColor: (0, _Config.colors)(color[0], color[1])
+                  });
+                  $this.draggable({
+                    zIndex: 999,
+                    revert: true,
+                    revertDuration: 0,
+                    appendTo: '.page',
+                    helper: function helper() {
+                      return '<a class="fc-day-grid-event fc-event fc-start fc-end" style="background-color:' + (0, _Config.colors)(color[0], color[1]) + ';border-color:' + (0, _Config.colors)(color[0], color[1]) + '">\n          <div class="fc-content">\n            <span class="fc-title">' + $this.data('title') + '</span>\n          </div>\n          </a>';
+                    }
+                  });
+                });
+*/
+
       }
     }, {
       key: 'handleListItem',
       value: function handleListItem() {
         this.$actionToggleBtn.on('click', function (e) {
+          alert("click100");
           $('#addNewCalendar').modal('show');
           e.stopPropagation();
         });
+
+
+        $(document).on('click', '[data-plugin=editlist]', function (e) {
+          alert("calendar clickedqqq");
+          $(document).data()
+        });
+
+
+        var calendarsList =[];
+        var jqxhr=$.ajax({
+             type: 'POST',
+             url: '/data/calendar.json',
+             async: false,
+             success: function(data) {
+               //alert(2222);
+               //alert(data);
+               //s\alert(data.length);
+               for(var i=0;i<data.length;i++){
+                 var name=data[i]["name"];
+                 var count=data[i]["count"];
+
+
+                  var calendarsItem = '' +
+                  '                  <div class="list-group-item" data-plugin="editlist">' +
+                  '                    <div class="list-content">' +
+                  '                      <span class="item-right">'+count+'</span>' +
+                  '                      <span class="list-text">'+name+'</span>' +
+                  '                      <div class="item-actions">' +
+                  '                        <span class="btn btn-pure btn-icon" data-toggle="list-editable"><i class="icon wb-edit" aria-hidden="true"></i></span>' +
+                  '                        <span class="btn btn-pure btn-icon" data-tag="list-delete"><i class="icon wb-trash" aria-hidden="true"></i></span>' +
+                  '                      </div>' +
+                  '                    </div>' +
+                  '                    <div class="list-editable">' +
+                  '                      <div class="form-group form-material">' +
+                  '                        <input type="text" class="form-control empty" name="label" value="Admin Calendar">' +
+                  '                        <button type="button" class="input-editable-close icon wb-close" data-toggle="list-editable-close"' +
+                  '                          aria-label="Close" aria-expanded="true"></button>' +
+                  '                      </div>' +
+                  '                    </div>';
+
+                  $('#calendars-list').append(calendarsItem);
+
+               }
+
+             },
+             fail: function(jqXHR, textStatus, errorThrown) {
+               alert(jqXHR.status);
+               alert(textStatus);
+               alert(errorThrown);
+
+               alert( "error" );
+             }
+        })
+
 
         $(document).on('click', '[data-tag=list-delete]', function (e) {
           bootbox.dialog({

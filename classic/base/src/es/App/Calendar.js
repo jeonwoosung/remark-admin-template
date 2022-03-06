@@ -37,7 +37,7 @@ class AppCalendar extends Site {
       backgroundColor: Config.colors('red', 600),
       borderColor: Config.colors('red', 600),
     }, {
-      title: 'Conference',
+      title: 'Conference22222',
       start: '2016-10-11',
       end: '2016-10-13',
     }, {
