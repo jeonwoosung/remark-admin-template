@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="../../../../global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
         <link rel="stylesheet" href="../../../../global/vendor/bootstrap-touchspin/bootstrap-touchspin.css">
         <link rel="stylesheet" href="../../../../global/vendor/jquery-selective/jquery-selective.css">
+        <link rel="stylesheet" href="../../../../global/vendor/jquery-selective/jquery-selective_student.css">
         <link rel="stylesheet" href="../../../assets/examples/css/apps/calendar.css">
 
 
@@ -37,6 +38,8 @@
     <link rel="stylesheet" href="../../../../global/fonts/web-icons/web-icons.min.css">
     <link rel="stylesheet" href="../../../../global/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
+
 
     <!--[if lt IE 9]>
     <script src="../../../../global/vendor/html5shiv/html5shiv.min.js"></script>
@@ -426,6 +429,7 @@
                           </div>
                         </div>
                       </a>
+
                       <a class="list-group-item" href="javascript:void(0)" role="menuitem">
                         <div class="media">
                           <div class="pr-10">
@@ -1766,6 +1770,14 @@
                     </div>
                   </div>
                   <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="editEid">ID:</label>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="editEid" name="editEid">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
                     <label class="col-md-2 form-control-label" for="editStarts">Starts:</label>
                     <div class="col-md-10">
                       <div class="input-group">
@@ -1797,6 +1809,7 @@
                         data-min="0" data-max="10" value="0" />
                     </div>
                   </div>
+
                   <div class="form-group row" id="editColor">
                     <label class="form-control-label col-md-2">Color:</label>
                     <div class="col-md-10">
@@ -1832,12 +1845,45 @@
                       </ul>
                     </div>
                   </div>
+
+
                   <div class="form-group row">
-                    <label class="col-md-2 form-control-label" for="editPeople">People:</label>
-                    <div class="col-md-10">
-                      <select id="editPeople" multiple="multiple" class="plugin-selective"></select>
+                    <label class="col-md-2 form-control-label" for="editPeople">치료사:</label>
+                    <div class="col-md-10" >
+                    <select id="editPeople" multiple="multiple" class="plugin-selective" style="display: none;"></select>
                     </div>
                   </div>
+
+
+
+                  <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="editPeople2">아동:</label>
+                    <div class="col-md-10">
+                      <select id="editPeople2" multiple="multiple" class="plugin-selective" style="display: none;"></select>
+                    </div>
+                  </div>
+
+                  <!--
+
+                  <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="editPeople"></label>
+                    <div class="col-md-10">
+                      <select class="form-control" multiple="multiple" id="student">
+                        <option id="1" selected="selected" value="1">전은수</option>
+                        <option id="2" value="2">전은서</option>
+                        <option id="3" value="3">박강민</option>
+                        <option value="4">나윤우</option>
+                        <option value="4">나윤우</option>
+                        <option value="4">나윤우</option>
+                        <option value="4">나윤우</option>
+                        <option value="4">나윤우</option>
+                        <option value="4">나윤우</option>
+                      </select>
+                    </div>
+                  </div>
+-->
+
+
                 </div>
                 <div class="modal-footer">
                   <div class="form-actions">
@@ -1991,7 +2037,7 @@
         <script src="../../../../global/vendor/jquery-ui/jquery-ui.min.js"></script>
         <script src="../../../../global/vendor/moment/moment.min.js"></script>
         <script src="../../../../global/vendor/fullcalendar/fullcalendar.js"></script>
-        <script src="../../../../global/vendor/jquery-selective/jquery-selective.min.js"></script>
+        <script src="../../../../global/vendor/jquery-selective/jquery-selective.js"></script>
         <script src="../../../../global/vendor/bootstrap-datepicker/bootstrap-datepicker.js"></script>
         <script src="../../../../global/vendor/bootstrap-touchspin/bootstrap-touchspin.min.js"></script>
         <script src="../../../../global/vendor/bootbox/bootbox.js"></script>

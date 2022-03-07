@@ -44,7 +44,8 @@
         babelHelpers.get(AppCalendar.prototype.__proto__ || Object.getPrototypeOf(AppCalendar.prototype), 'process', this).call(this);
 
         this.handleFullcalendar();
-        this.handleSelective();
+//        this.handleSelective();
+//        this.handleSelective2();
         this.handleAction();
         this.handleListItem();
         this.handleEventList();
@@ -76,54 +77,6 @@
              }
         })
 
-//        var jqxhr = $.get( "/data/events.json" )
-
-
-//alert(JSON.stringify(myEvents));
-//alert(JSON.stringify((0, _Config.colors)('red', 600)));
-
-
-
-/*
-        var myEvents = [{
-          title: 'All Day Event',
-          start: '2016-10-01'
-        }, {
-          title: 'Long Event',
-          start: '2016-10-07',
-          end: '2016-10-10',
-          backgroundColor: (0, _Config.colors)('cyan', 600),
-          borderColor: (0, _Config.colors)('cyan', 600)
-        }, {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2016-10-09T16:00:00',
-          backgroundColor: (0, _Config.colors)('red', 600),
-          borderColor: (0, _Config.colors)('red', 600)
-        }, {
-          title: 'Conference232222',
-          start: '2016-10-11',
-          end: '2016-10-13'
-        }, {
-          title: 'Meeting',
-          start: '2016-10-12T10:30:00',
-          end: '2016-10-12T12:30:00'
-        }, {
-          title: 'Lunch',
-          start: '2016-10-12T12:00:00'
-        }, {
-          title: 'Meeting',
-          start: '2016-10-12T14:30:00'
-        }, {
-          title: 'Happy Hour',
-          start: '2016-10-12T17:30:00'
-        }, {
-          title: 'Dinner',
-          start: '2016-10-12T20:00:00'
-        }, {
-          title: 'Birthday Party',
-          start: '2016-10-13T07:00:00'
-        }];*/
 
         var myOptions = {
           header: {
@@ -154,6 +107,8 @@
             var color = event.backgroundColor ? event.backgroundColor : (0, _Config.colors)('blue', 600);
             $('#editEname').val(event.title);
 
+            $('#editEid').val(event.id);
+
             if (event.start) {
               $('#editStarts').datepicker('update', event.start._d);
             } else {
@@ -176,7 +131,155 @@
               }
             });
 
+            $('#editNewEvent').modal('show').one('shown.bs.modal', function (e) {
+              console.log("shown.bs.modal");
+
+              var name="테스트";
+              var id="256";
+
+
+
+              var member = [];
+              $.ajax({
+                   type: 'POST',
+                   url: '/data/employee.json',
+                   async: false,
+                   fail: function(jqXHR, textStatus, errorThrown) {
+                     console.log(jqXHR.status);
+                     console.log(textStatus);
+                     console.log(errorThrown);
+
+                     alert( "error" );
+                   },
+                   success: function(data) {
+                     member=data;
+                     }
+              })
+
+              var items = [];
+
+              $.ajax({
+                   type: 'POST',
+                   url: '/data/item_'+event.id+'.json',
+                   async: false,
+                   fail: function(jqXHR, textStatus, errorThrown) {
+                     console.log(jqXHR.status);
+                     console.log(textStatus);
+                     console.log(errorThrown);
+
+                     alert( "error" );
+                   },
+                   success: function(data) {
+                     items=data;
+                     }
+              })
+
+
+              $('#editPeople').selective({
+                      namespace: 'addMember',
+                      local: member,
+                      selected: items,
+                      buildFromHtml: false,
+                      tpl: {
+                        optionValue: function optionValue(data) {
+                          return data.id;
+                        },
+                        frame: function frame() {
+                          return '<div class="' + this.namespace + '">\n          ' + this.options.tpl.items.call(this) + '\n          <div class="' + this.namespace + '-trigger">\n          ' + this.options.tpl.triggerButton.call(this) + '\n          <div class="' + this.namespace + '-trigger-dropdown">\n          ' + this.options.tpl.list.call(this) + '\n          </div>\n          </div>\n          </div>';
+                        },
+                        triggerButton: function triggerButton() {
+                          return '<div class="' + this.namespace + '-trigger-button"><i class="wb-plus"></i></div>';
+                        },
+                        listItem: function listItem(data) {
+                          return '<li class="' + this.namespace + '-list-item">' + data.name + '</li>';
+                        },
+                        item: function item(data) {
+                          return '<li class="' + this.namespace + '-item">' + data.name+ this.options.tpl.itemRemove.call(this) + '</li>';
+                        },
+                        itemRemove: function itemRemove() {
+                          return '<span class="' + this.namespace + '-remove"><i class="wb-minus-circle"></i></span>';
+                        },
+                        option: function option(data) {
+                          return '<option value="' + this.options.tpl.optionValue.call(this, data) + '">' + data.name + '</option>';
+                        }
+                      }
+                    });
+              });
+
+
+
+              var member2 = [];
+              $.ajax({
+                   type: 'POST',
+                   url: '/data/student.json',
+                   async: false,
+                   fail: function(jqXHR, textStatus, errorThrown) {
+                     console.log(jqXHR.status);
+                     console.log(textStatus);
+                     console.log(errorThrown);
+
+                     alert( "error" );
+                   },
+                   success: function(data) {
+                     member2=data;
+                     }
+              })
+
+              var items2 = [];
+
+              $.ajax({
+                   type: 'POST',
+                   url: '/data/st_0'+event.id+'.json',
+                   async: false,
+                   fail: function(jqXHR, textStatus, errorThrown) {
+                     console.log(jqXHR.status);
+                     console.log(textStatus);
+                     console.log(errorThrown);
+
+                     alert( "error" );
+                   },
+                   success: function(data) {
+                     items2=data;
+                     }
+              })
+
+              $('#editPeople2').selective({
+                      namespace: 'addStudentMember',
+                      local: member2,
+                      selected: items2,
+                      buildFromHtml: false,
+                      tpl: {
+                        optionValue: function optionValue(data) {
+                          return data.id;
+                        },
+                        frame: function frame() {
+                          return '<div class="' + this.namespace + '">\n          ' + this.options.tpl.items.call(this) + '\n          <div class="' + this.namespace + '-trigger">\n          ' + this.options.tpl.triggerButton.call(this) + '\n          <div class="' + this.namespace + '-trigger-dropdown">\n          ' + this.options.tpl.list.call(this) + '\n          </div>\n          </div>\n          </div>';
+                        },
+                        triggerButton: function triggerButton() {
+                          return '<div class="' + this.namespace + '-trigger-button"><i class="wb-plus"></i></div>';
+                        },
+                        listItem: function listItem(data) {
+                          return '<li class="' + this.namespace + '-list-item">' + data.name + '</li>';
+                        },
+                        item: function item(data) {
+                          return '<li class="' + this.namespace + '-item">' + data.name+ this.options.tpl.itemRemove.call(this) + '</li>';
+                        },
+                        itemRemove: function itemRemove() {
+                          return '<span class="' + this.namespace + '-remove"><i class="wb-minus-circle"></i></span>';
+                        },
+                        option: function option(data) {
+                          return '<option value="' + this.options.tpl.optionValue.call(this, data) + '">' + data.name + '</option>';
+                        }
+                      }
+                    });
+
+
+
             $('#editNewEvent').modal('show').one('hidden.bs.modal', function (e) {
+              console.log("editNewEvent2 ended.");
+              $('#editPeople').selective("destroy");
+              $('#editPeople2').selective("destroy");
+
               event.title = $('#editEname').val();
 
               var color = $('#editColor [type=radio]:checked').data('color').split('|');
@@ -213,63 +316,52 @@
       key: 'handleSelective',
       value: function handleSelective() {
 
-        var member = [{
-          id: 'uid_1',
-          name: 'Herman Beck',
-          avatar: '../../../../global/portraits/1.jpg'
-        }, {
-          id: 'uid_2',
-          name: 'Mary Adams',
-          avatar: '../../../../global/portraits/2.jpg'
-        }, {
-          id: 'uid_3',
-          name: 'Caleb Richards',
-          avatar: '../../../../global/portraits/3.jpg'
-        }, {
-          id: 'uid_4',
-          name: 'June Lane',
-          avatar: '../../../../global/portraits/4.jpg'
-        }];
 
-        var items = [{
-          id: 'uid_1',
-          name: 'Herman Beck',
-          avatar: '../../../../global/portraits/1.jpg'
-        }, {
-          id: 'uid_2',
-          name: 'Caleb Richards',
-          avatar: '../../../../global/portraits/2.jpg'
-        }];
+      }
+    }, {
+      key: 'handleSelective2',
+      value: function handleSelective2() {
 
-        $('.plugin-selective').selective({
-          namespace: 'addMember',
-          local: member,
-          selected: items,
-          buildFromHtml: false,
-          tpl: {
-            optionValue: function optionValue(data) {
-              return data.id;
-            },
-            frame: function frame() {
-              return '<div class="' + this.namespace + '">\n          ' + this.options.tpl.items.call(this) + '\n          <div class="' + this.namespace + '-trigger">\n          ' + this.options.tpl.triggerButton.call(this) + '\n          <div class="' + this.namespace + '-trigger-dropdown">\n          ' + this.options.tpl.list.call(this) + '\n          </div>\n          </div>\n          </div>';
-            },
-            triggerButton: function triggerButton() {
-              return '<div class="' + this.namespace + '-trigger-button"><i class="wb-plus"></i></div>';
-            },
-            listItem: function listItem(data) {
-              return '<li class="' + this.namespace + '-list-item"><img class="avatar" src="' + data.avatar + '">' + data.name + '</li>';
-            },
-            item: function item(data) {
-              return '<li class="' + this.namespace + '-item"><img class="avatar" src="' + data.avatar + '" title="' + data.name + '">' + this.options.tpl.itemRemove.call(this) + '</li>';
-            },
-            itemRemove: function itemRemove() {
-              return '<span class="' + this.namespace + '-remove"><i class="wb-minus-circle"></i></span>';
-            },
-            option: function option(data) {
-              return '<option value="' + this.options.tpl.optionValue.call(this, data) + '">' + data.name + '</option>';
-            }
-          }
+        //
+        // console.log("handleSelective2 called.")
+        // $('#student').on('click', function (a, b) {
+        //   var name=$('#student option:selected').text()
+        //   var id=$('#student option:selected').val()
+        //
+        //   var student = '' +
+        //   '  <li class="addMember-item">' +
+        //   name +
+        //   '    <span class="addMember-remove">' +
+        //   '    <i class="wb-minus-circle"></i></span>' +
+        //   '  </li>';
+        //
+        //
+        //   $('.addMember-items').append(student);
+        //
+        // });
+
+/*
+        $('#student').on('click', function (a, b) {
+
+alert($( this ).selectedIndex());
+alert(JSON.stringify(a.selectedIndex));
+          var student = '' +
+          '  <li class="addMember-item">' +
+          '    <img class="avatar" src="../../../../global/portraits/2.jpg" title="대방동샘">' +
+          '    <span class="addMember-remove">' +
+          '    <i class="wb-minus-circle"></i></span>' +
+          '  </li>';
+
+
+          $('.addMember-items').append(student);
+
         });
+*/
+
+
+
+
+
       }
     }, {
       key: 'handleAction',
@@ -335,14 +427,14 @@
       key: 'handleListItem',
       value: function handleListItem() {
         this.$actionToggleBtn.on('click', function (e) {
-          alert("click100");
+          console.log("click100");
           $('#addNewCalendar').modal('show');
           e.stopPropagation();
         });
 
 
         $(document).on('click', '[data-plugin=editlist]', function (e) {
-          alert("calendar clickedqqq");
+          console.log("calendar clickedqqq");
           $(document).data()
         });
 
@@ -352,6 +444,13 @@
              type: 'POST',
              url: '/data/calendar.json',
              async: false,
+             fail: function(jqXHR, textStatus, errorThrown) {
+               console.log(jqXHR.status);
+               console.log(textStatus);
+               console.log(errorThrown);
+
+               alert( "error" );
+             },
              success: function(data) {
                //alert(2222);
                //alert(data);
@@ -383,13 +482,6 @@
 
                }
 
-             },
-             fail: function(jqXHR, textStatus, errorThrown) {
-               alert(jqXHR.status);
-               alert(textStatus);
-               alert(errorThrown);
-
-               alert( "error" );
              }
         })
 

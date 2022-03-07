@@ -534,6 +534,7 @@
 
     var Selective = function() {
       function Selective(element) {
+//        debugger;
         var _this6 = this;
 
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -858,9 +859,9 @@
       return this.each(
 
         function() {
-          if (!(0, _jquery2.default)(this).data(NAMESPACE)) {
+//          if (!(0, _jquery2.default)(this).data(NAMESPACE)) {
             (0, _jquery2.default)(this).data(NAMESPACE, new Selective(this, options));
-          }
+//          }
         }
       );
     };

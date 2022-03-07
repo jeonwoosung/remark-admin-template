@@ -1,21 +1,21 @@
 [{
   "id": 1,
-  "name": "전우성",
+  "name": "전은수",
   "phone": "010-5133-3370",
   "mail": "specialcase@naver.com"
 },{
   "id": 2,
-  "name": "윤지민",
+  "name": "박강민",
   "phone": "010-9355-1376",
   "mail": "jimin417@naver.com"
 },{
   "id": 3,
-  "name": "대방동샘",
+  "name": "나윤우",
   "phone": "010-4431-1235",
   "mail": "xyzabc@naver.com"
 },{
   "id": 4,
-  "name": "목동샘",
+  "name": "오윤아",
   "phone": "010-3421-8832",
   "mail": "queen11@naver.com"
 }]
