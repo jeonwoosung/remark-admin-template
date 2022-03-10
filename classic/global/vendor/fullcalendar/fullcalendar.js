@@ -153,7 +153,7 @@ function enableCursor() {
 
 // Given a total available height to fill, have `els` (essentially child rows) expand to accomodate.
 // By default, all elements that are shorter than the recommended height are expanded uniformly, not considering
-// any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and 
+// any other els that are already too tall. if `shouldRedistribute` is on, it considers these tall rows and
 // reduces the available height.
 function distributeHeight(els, availableHeight, shouldRedistribute) {
 
@@ -1580,7 +1580,7 @@ Parses a format string into the following:
 */
 function parseFormatString(formatStr) {
 	var chunks = chunkFormatString(formatStr);
-	
+
 	return {
 		fakeFormatString: buildFakeFormatString(chunks),
 		sameUnits: buildSameUnits(chunks)
@@ -2276,7 +2276,6 @@ var Model = Class.extend(EmitterMixin, ListenerMixin, {
 		}
 
 		function onDepChange(depName, val, isOptional) {
-
 			if (val === undefined) { // unsetting a value?
 
 				// required dependency that was previously set?
@@ -11523,7 +11522,7 @@ Calendar.defaults = {
 
 	weekNumberTitle: 'W',
 	weekNumberCalculation: 'local',
-	
+
 	//editable: false,
 
 	//nowIndicator: false,
@@ -11532,7 +11531,7 @@ Calendar.defaults = {
 	minTime: '00:00:00',
 	maxTime: '24:00:00',
 	showNonCurrentDates: true,
-	
+
 	// event ajax
 	lazyFetching: true,
 	startParam: 'start',
@@ -11562,7 +11561,7 @@ Calendar.defaults = {
 
 	// allows setting a min-height to the event segment to prevent short events overlapping each other
 	agendaEventMinHeight: 0,
-	
+
 	// jquery-ui theming
 	theme: false,
 	//themeButtonIcons: null,
@@ -11571,11 +11570,11 @@ Calendar.defaults = {
 	dragOpacity: .75,
 	dragRevertDuration: 500,
 	dragScroll: true,
-	
+
 	//selectable: false,
 	unselectAuto: true,
 	//selectMinDistance: 0,
-	
+
 	dropAccept: '*',
 
 	eventOrder: 'title',
@@ -11585,12 +11584,12 @@ Calendar.defaults = {
 	eventLimitText: 'more',
 	eventLimitClick: 'popover',
 	dayPopoverFormat: 'LL',
-	
+
 	handleWindowResize: true,
 	windowResizeDelay: 100, // milliseconds before an updateSize happens
 
 	longPressDelay: 1000
-	
+
 };
 
 
@@ -14909,7 +14908,7 @@ var DayGridEventRenderer = EventRenderer.extend({
 				col++;
 			}
 		}
-
+//debugger;
 		for (i = 0; i < levelCnt; i++) { // iterate through all levels
 			levelSegs = segLevels[i];
 			col = 0;

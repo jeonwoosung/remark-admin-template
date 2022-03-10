@@ -49,14 +49,101 @@
         var self = this;
         this.slidepanelOptions = _jquery2.default.extend({}, (0, _Plugin.getDefaults)('slidePanel'), {
           template: function template(options) {
+    //        alert("template");
             return '<div class="' + options.classes.base + ' ' + options.classes.base + '-' + options.direction + '">\n                  <div class="' + options.classes.base + '-scrollable">\n                    <div><div class="' + options.classes.content + '"></div></div>\n                  </div>\n                  <div class="' + options.classes.base + '-handler"></div>\n                </div>';
           },
           afterLoad: function afterLoad() {
+  //          alert("afterLoad");
             this.$panel.find('.' + this.options.classes.base + '-scrollable').asScrollable({
               namespace: 'scrollable',
               contentSelector: '>',
               containerSelector: '>'
             });
+
+            var id=$("#employeeList tr.selected .emp_no").html().trim()
+
+
+
+
+            $.ajax({
+                 type: 'POST',
+                 url: '/data/emp_'+id+'.json',
+                 async: false,
+                 success: function(data) {
+                   $("H3.name").html(data.name);
+
+                   var userinfo = '' +
+                   '    <tbody>' +
+                   '      <tr>' +
+                   '        <td class="info-label">Email:</td>' +
+                   '        <td>' +
+                   '          <span>'+data.mail+'</span>' +
+                   '          <div class="form-group form-material floating">' +
+                   '            <input type="email" class="form-control empty" name="inputFloatingEmail" value="'+data.mail+'">' +
+                   '          </div>' +
+                   '        </td>' +
+                   '      </tr>' +
+                   '      <tr>' +
+                   '        <td class="info-label">Phone:</td>' +
+                   '        <td>' +
+                   '          <span>'+data.phone+'</span>' +
+                   '          <div class="form-group form-material floating">' +
+                   '            <input type="text" class="form-control empty" name="inputFloatingPhone" value="'+data.phone+'">' +
+                   '          </div>' +
+                   '        </td>' +
+                   '      </tr>' +
+                   '      <tr>' +
+                   '        <td class="info-label">Address:</td>' +
+                   '        <td>' +
+                   '          <span>'+data.addr+'</span>' +
+                   '          <div class="form-group form-material floating">' +
+                   '            <input type="text" class="form-control empty" name="inputFloatingAddress" value="'+data.addr+'">' +
+                   '          </div>' +
+                   '        </td>' +
+                   '      </tr>' +
+                   '      <tr>' +
+                   '        <td class="info-label">Birthday:</td>' +
+                   '        <td>' +
+                   '          <span>'+data.birth+'</span>' +
+                   '          <div class="form-group form-material floating">' +
+                   '            <input type="text" class="form-control empty" name="inputFloatingBirthday" value="'+data.birth+'">' +
+                   '          </div>' +
+                   '        </td>' +
+                   '      </tr>' +
+                   // '      <tr>' +
+                   // '        <td class="info-label">URL:</td>' +
+                   // '        <td>' +
+                   // '          <span>http://amazingSurge222.com</span>' +
+                   // '          <div class="form-group form-material floating">' +
+                   // '            <input type="text" class="form-control empty" name="inputFloatingURL" value="http://amazingSurge.com">' +
+                   // '          </div>' +
+                   // '        </td>' +
+                   // '      </tr>' +
+                   '    </tbody>' +
+                   '';
+
+                   $(".slidePanel-inner .user-info").html(userinfo);
+
+
+                 },
+                 fail: function(jqXHR, textStatus, errorThrown) {
+                   alert(jqXHR.status);
+                   alert(textStatus);
+                   alert(errorThrown);
+
+                   alert( "error" );
+                 }
+            });
+
+
+
+
+
+
+
+//            alert(                $("#employeeList tr.selected").html());
+
+
             self.initializePlugins(this.$panel);
           },
           afterShow: function afterShow() {
@@ -69,6 +156,8 @@
             });
           },
           afterHide: function afterHide() {
+            // alert(88);
+
             (0, _jquery2.default)(document).off('click.slidePanelShow');
             (0, _jquery2.default)(document).off('click.slidePanelDatepicker');
           }

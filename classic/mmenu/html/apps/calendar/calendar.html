@@ -33,6 +33,13 @@
         <link rel="stylesheet" href="../../../../global/vendor/jquery-selective/jquery-selective_student.css">
         <link rel="stylesheet" href="../../../assets/examples/css/apps/calendar.css">
 
+<!-- 전우성
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+-->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="../../../../custom/css/tempusdominus-bootstrap-4.css" />
+
 
     <!-- Fonts -->
     <link rel="stylesheet" href="../../../../global/fonts/web-icons/web-icons.min.css">
@@ -1548,77 +1555,6 @@
               <section class="page-aside-section">
                 <h5 class="page-aside-title">CALENDAR LIST</h5>
                 <div class="list-group has-actions calendars-list" id="calendars-list">
-
-<!--
-                  <div class="list-group-item" data-plugin="editlist">
-                    <div class="list-content">
-                      <span class="item-right">10</span>
-                      <span class="list-text">Admin Calendar</span>
-                      <div class="item-actions">
-                        <span class="btn btn-pure btn-icon" data-toggle="list-editable"><i class="icon wb-edit" aria-hidden="true"></i></span>
-                        <span class="btn btn-pure btn-icon" data-tag="list-delete"><i class="icon wb-trash" aria-hidden="true"></i></span>
-                      </div>
-                    </div>
-                    <div class="list-editable">
-                      <div class="form-group form-material">
-                        <input type="text" class="form-control empty" name="label" value="Admin Calendar">
-                        <button type="button" class="input-editable-close icon wb-close" data-toggle="list-editable-close"
-                          aria-label="Close" aria-expanded="true"></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item" data-plugin="editlist">
-                    <div class="list-content">
-                      <span class="item-right">5</span>
-                      <span class="list-text">Home Calendar</span>
-                      <div class="item-actions">
-                        <span class="btn btn-pure btn-icon" data-toggle="list-editable"><i class="icon wb-edit" aria-hidden="true"></i></span>
-                        <span class="btn btn-pure btn-icon" data-toggle="list-delete"><i class="icon wb-trash" aria-hidden="true"></i></span>
-                      </div>
-                    </div>
-                    <div class="list-editable">
-                      <div class="form-group form-material">
-                        <input type="text" class="form-control empty" name="label" value="Home Calendar">
-                        <button type="button" class="input-editable-close icon wb-close" data-toggle="list-editable-close"
-                          aria-label="Close" aria-expanded="true"></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item" data-plugin="editlist">
-                    <div class="list-content">
-                      <span class="item-right">16</span>
-                      <span class="list-text">Work Calendar</span>
-                      <div class="item-actions">
-                        <span class="btn btn-pure btn-icon" data-toggle="list-editable"><i class="icon wb-edit" aria-hidden="true"></i></span>
-                        <span class="btn btn-pure btn-icon" data-toggle="list-delete"><i class="icon wb-trash" aria-hidden="true"></i></span>
-                      </div>
-                    </div>
-                    <div class="list-editable">
-                      <div class="form-group form-material">
-                        <input type="text" class="form-control empty" name="label" value="Work Calendar">
-                        <button type="button" class="input-editable-close icon wb-close" data-toggle="list-editable-close"
-                          aria-label="Close" aria-expanded="true"></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item" data-plugin="editlist">
-                    <div class="list-content">
-                      <span class="item-right">30</span>
-                      <span class="list-text">Calendar One</span>
-                      <div class="item-actions">
-                        <span class="btn btn-pure btn-icon" data-toggle="list-editable"><i class="icon wb-edit" aria-hidden="true"></i></span>
-                        <span class="btn btn-pure btn-icon" data-toggle="list-delete"><i class="icon wb-trash" aria-hidden="true"></i></span>
-                      </div>
-                    </div>
-                    <div class="list-editable">
-                      <div class="form-group form-material">
-                        <input type="text" class="form-control empty" name="label" value="Calendar One">
-                        <button type="button" class="input-editable-close icon wb-close" data-toggle="list-editable-close"
-                          aria-label="Close" aria-expanded="true"></button>
-                      </div>
-                    </div>
-                  </div>
-                -->
                 </div>
               </section>
               <section class="page-aside-section">
@@ -1735,12 +1671,32 @@
                       </ul>
                     </div>
                   </div>
+
+
+                                    <div class="form-group row">
+                                      <label class="col-md-2 form-control-label" for="editPeople">치료사:</label>
+                                      <div class="col-md-10" >
+                                      <select id="editPeople4" multiple="multiple" class="plugin-selective" style="display: none;"></select>
+                                      </div>
+                                    </div>
+
+
+
+                                    <div class="form-group row">
+                                      <label class="col-md-2 form-control-label" for="editPeople2">아동:</label>
+                                      <div class="col-md-10">
+                                        <select id="editPeople5" multiple="multiple" class="plugin-selective" style="display: none;"></select>
+                                      </div>
+                                    </div>
+
+<!--
                   <div class="form-group row">
                     <label class="col-md-2 form-control-label" for="people">People:</label>
                     <div class="col-md-10">
                       <select id="eventPeople" multiple="multiple" class="plugin-selective"></select>
                     </div>
                   </div>
+-->
                 </div>
                 <div class="modal-footer">
                   <div class="form-actions">
@@ -1770,11 +1726,14 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-2 form-control-label" for="editEid">ID:</label>
+                    <label class="col-md-2 form-control-label" for="editEid">ID222:</label>
                     <div class="col-md-10">
                       <input type="text" class="form-control" id="editEid" name="editEid">
                     </div>
                   </div>
+
+
+
 
 
                   <div class="form-group row">
@@ -1782,7 +1741,7 @@
                     <div class="col-md-10">
                       <div class="input-group">
                         <input type="text" class="form-control" id="editStarts" name="editStarts" data-container="#editNewEvent"
-                          data-plugin="datepicker">
+                          data-plugin="datetimepicker">
                         <span class="input-group-addon">
                           <i class="icon wb-calendar" aria-hidden="true"></i>
                         </span>
@@ -1795,7 +1754,7 @@
                     <div class="col-md-10">
                       <div class="input-group">
                         <input type="text" class="form-control" id="editEnds" data-container="#editNewEvent"
-                          data-plugin="datepicker">
+                          data-plugin="datetimepicker">
                         <span class="input-group-addon">
                           <i class="icon wb-calendar" aria-hidden="true"></i>
                         </span>
@@ -1950,6 +1909,24 @@
                     </div>
                   </div>
 
+
+                  <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="editPeople">치료사:</label>
+                    <div class="col-md-10" >
+                    <select id="editPeople" multiple="multiple" class="plugin-selective" style="display: none;"></select>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group row">
+                    <label class="col-md-2 form-control-label" for="editPeople2">아동:</label>
+                    <div class="col-md-10">
+                      <select id="editPeople2" multiple="multiple" class="plugin-selective" style="display: none;"></select>
+                    </div>
+                  </div>
+
+<!--
                   <div class="form-group row">
                     <label class="col-md-2 form-control-label" for="people">People:</label>
                     <div class="col-md-10">
@@ -1957,6 +1934,7 @@
                     </div>
                   </div>
                 </div>
+              -->
                 <div class="modal-footer">
                   <div class="form-actions">
                     <button class="btn btn-primary" data-dismiss="modal" onclick="javascript:alert("clicked")" type="button">Create</button>
@@ -2073,6 +2051,32 @@
         <script src="../../../assets/js/App/Calendar.js"></script>
 
         <script src="../../../assets/examples/js/apps/calendar.js"></script>
+
+<!-- 전우성
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.js"></script>
+
+-->
+
+
+<!--
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+-->
+<script type="text/javascript" src="../../../../custom/js/moment.js"></script>
+<script type="text/javascript" src="../../../../custom/js/moment-timezone-with-data.js"></script>
+<script src="../../../../custom/js/tempusdominus-bootstrap-4.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({ format: 'L'});
+        $("#datetimepicker1").on("change.datetimepicker", function (e) {
+            $('#datetimepicker2').datetimepicker('minDate', e.date);
+        });
+    });
+</script>
+
+
 
   </body>
 </html>

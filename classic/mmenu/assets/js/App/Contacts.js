@@ -59,7 +59,6 @@
     }, {
       key: 'addContactList',
       value: function addContactList(checked) {
-        alert("loaded.");
 
         var calendarsList =[];
         var jqxhr=$.ajax({
@@ -71,6 +70,7 @@
                //alert(data);
                //s\alert(data.length);
                for(var i=0;i<data.length;i++){
+                 var id=data[i]["id"];
                  var name=data[i]["name"];
                  var mail=data[i]["mail"];
                  var phone=data[i]["phone"];
@@ -83,14 +83,14 @@
                   '                <td class="pre-cell"></td>' +
                   '                <td class="cell-30">' +
                   '                  <span class="checkbox-custom checkbox-primary checkbox-lg">' +
-                  '                    <input type="checkbox" class="contacts-checkbox selectable-item" id="contacts_1"' +
-                  '                    />' +
+                  '                    <input type="checkbox" class="contacts-checkbox selectable-item" id="contacts_1"/>' +
                   '                    <label for="contacts_1"></label>' +
                   '                  </span>' +
                   '                </td>' +
+                  '                <td class="cell-100 emp_no">' +
+                  '                  </a>' + id +
+                  '                </td>' +
                   '                <td class="cell-300">' +
-                  '                  <a class="avatar" href="javascript:void(0)">' +
-                  '                    <img class="img-fluid" src="../../../../global/portraits/1.jpg" alt="...">' +
                   '                  </a>' + name +
                   '                </td>' +
                   '                <td class="cell-300">'+phone+'</td>' +
@@ -99,6 +99,11 @@
                   '              </tr>';
 
                   $('#employeeList').append(employeeItem);
+
+              $("#employeeList tr").click(function(){
+                 $(this).addClass('selected').siblings().removeClass('selected');
+              });
+
 
                }
 
@@ -162,10 +167,13 @@
       value: function handlSlidePanelContent() {
         var _this4 = this;
 
+
         $(document).on('click', '[data-toggle=edit]', function () {
           var $button = $(this),
               $panel = $button.parents('.slidePanel');
           var $form = $panel.find('.user-info');
+
+
 
           $button.toggleClass('active');
           $form.toggleClass('active');

@@ -110,14 +110,16 @@
             $('#editEid').val(event.id);
 
             if (event.start) {
-              $('#editStarts').datepicker('update', event.start._d);
+              $('#editStarts').datetimepicker('date', moment.tz(event.start._d , "GMT0"));
+
+//              $('#editStarts').datetimepicker('date', moment(event.start._d, 'DD/MM/YYYY HH:mm:ss Z'));
             } else {
-              $('#editStarts').datepicker('update', '');
+              $('#editStarts').datetimepicker('date', '');
             }
             if (event.end) {
-              $('#editEnds').datepicker('update', event.end._d);
+              $('#editEnds').datetimepicker('date', moment.tz(event.end._d , "GMT0"));
             } else {
-              $('#editEnds').datepicker('update', '');
+              $('#editEnds').datetimepicker('date', '');
             }
 
             $('#editColor [type=radio]').each(function () {
@@ -136,8 +138,6 @@
 
               var name="테스트";
               var id="256";
-
-
 
               var member = [];
               $.ajax({
@@ -276,6 +276,7 @@
 
 
             $('#editNewEvent').modal('show').one('hidden.bs.modal', function (e) {
+//              debugger;
               console.log("editNewEvent2 ended.");
               $('#editPeople').selective("destroy");
               $('#editPeople2').selective("destroy");
@@ -311,6 +312,38 @@
 
         $('#editNewEvent').modal();
         $('#calendar').fullCalendar(_options);
+
+
+        $('#editStarts').on('click', function (a, b) {
+          $('#editStarts').datetimepicker('toggle');
+          $('#editEnds').datetimepicker('hide');
+
+        });
+        $('#editEnds').on('click', function (a, b) {
+          $('#editEnds').datetimepicker('toggle');
+          $('#editStarts').datetimepicker('hide');
+
+        });
+
+//         $('#editStarts').datetimepicker('date', moment(event.start._d, 'DD/MM/YYYY HH:mm:ss a'));
+//           // $('#editStarts').datetimepicker('show', event.start._d);
+// //              $('#editStarts').datetimepicker('hide', '');
+//         } else {
+//           // $('#editStarts').datetimepicker('hide', '');
+//           $('#editStarts').datetimepicker('date', '');
+//         }
+//         if (event.end) {
+//           $('#editEnds').datetimepicker('date', moment(event.end._d, 'DD/MM/YYYY HH:mm:ss a'));
+// //              $('#editEnds').datetimepicker('show', event.end._d);
+//           // $('#editEnds').datepicker('update', event.end._d);
+//         } else {
+//           $('#editEnds').datetimepicker('date', '');
+//           // $('#editEnds').datetimepicker('hide', '');
+//           // $('#editEnds').datepicker('update', '');
+//         }
+
+
+
       }
     }, {
       key: 'handleSelective',
@@ -457,11 +490,12 @@ alert(JSON.stringify(a.selectedIndex));
                //s\alert(data.length);
                for(var i=0;i<data.length;i++){
                  var name=data[i]["name"];
+                 var id=data[i]["id"];
                  var count=data[i]["count"];
 
 
                   var calendarsItem = '' +
-                  '                  <div class="list-group-item" data-plugin="editlist">' +
+                  '                  <div class="list-group-item" data-plugin="editlist" cal-id="'+id+'">' +
                   '                    <div class="list-content">' +
                   '                      <span class="item-right">'+count+'</span>' +
                   '                      <span class="list-text">'+name+'</span>' +
@@ -500,6 +534,13 @@ alert(JSON.stringify(a.selectedIndex));
             }
           });
         });
+
+        $(document).on('click', '[data-plugin=editlist]', function (e) {
+          alert($(this).attr("cal-id"));
+        });
+
+
+
       }
     }]);
     return AppCalendar;

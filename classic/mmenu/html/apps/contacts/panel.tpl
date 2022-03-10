@@ -67,7 +67,7 @@
       <tr>
         <td class="info-label">URL:</td>
         <td>
-          <span>http://amazingSurge.com</span>
+          <span>http://amazingSurge222.com</span>
           <div class="form-group form-material floating">
             <input type="text" class="form-control empty" name="inputFloatingURL" value="http://amazingSurge.com">
           </div>
