@@ -64,8 +64,6 @@
                   if(data != null) {
                        // Do somothing when data is not null
                   }
-//                  alert(111);
-//                  alert(data);
                   myEvents=data;
              },
              fail: function(jqXHR, textStatus, errorThrown) {
@@ -325,75 +323,10 @@
 
         });
 
-//         $('#editStarts').datetimepicker('date', moment(event.start._d, 'DD/MM/YYYY HH:mm:ss a'));
-//           // $('#editStarts').datetimepicker('show', event.start._d);
-// //              $('#editStarts').datetimepicker('hide', '');
-//         } else {
-//           // $('#editStarts').datetimepicker('hide', '');
-//           $('#editStarts').datetimepicker('date', '');
-//         }
-//         if (event.end) {
-//           $('#editEnds').datetimepicker('date', moment(event.end._d, 'DD/MM/YYYY HH:mm:ss a'));
-// //              $('#editEnds').datetimepicker('show', event.end._d);
-//           // $('#editEnds').datepicker('update', event.end._d);
-//         } else {
-//           $('#editEnds').datetimepicker('date', '');
-//           // $('#editEnds').datetimepicker('hide', '');
-//           // $('#editEnds').datepicker('update', '');
-//         }
-
-
-
       }
     }, {
       key: 'handleSelective',
       value: function handleSelective() {
-
-
-      }
-    }, {
-      key: 'handleSelective2',
-      value: function handleSelective2() {
-
-        //
-        // console.log("handleSelective2 called.")
-        // $('#student').on('click', function (a, b) {
-        //   var name=$('#student option:selected').text()
-        //   var id=$('#student option:selected').val()
-        //
-        //   var student = '' +
-        //   '  <li class="addMember-item">' +
-        //   name +
-        //   '    <span class="addMember-remove">' +
-        //   '    <i class="wb-minus-circle"></i></span>' +
-        //   '  </li>';
-        //
-        //
-        //   $('.addMember-items').append(student);
-        //
-        // });
-
-/*
-        $('#student').on('click', function (a, b) {
-
-alert($( this ).selectedIndex());
-alert(JSON.stringify(a.selectedIndex));
-          var student = '' +
-          '  <li class="addMember-item">' +
-          '    <img class="avatar" src="../../../../global/portraits/2.jpg" title="대방동샘">' +
-          '    <span class="addMember-remove">' +
-          '    <i class="wb-minus-circle"></i></span>' +
-          '  </li>';
-
-
-          $('.addMember-items').append(student);
-
-        });
-*/
-
-
-
-
 
       }
     }, {
@@ -433,28 +366,6 @@ alert(JSON.stringify(a.selectedIndex));
           });
         });
 
-/*
-                $('.calendars-list').each(function () {
-                  var $this = $(this),
-                      color = $this.data('color').split('-');
-                  $this.data('event', {
-                    title: $this.data('title'),
-                    stick: $this.data('stick'),
-                    backgroundColor: (0, _Config.colors)(color[0], color[1]),
-                    borderColor: (0, _Config.colors)(color[0], color[1])
-                  });
-                  $this.draggable({
-                    zIndex: 999,
-                    revert: true,
-                    revertDuration: 0,
-                    appendTo: '.page',
-                    helper: function helper() {
-                      return '<a class="fc-day-grid-event fc-event fc-start fc-end" style="background-color:' + (0, _Config.colors)(color[0], color[1]) + ';border-color:' + (0, _Config.colors)(color[0], color[1]) + '">\n          <div class="fc-content">\n            <span class="fc-title">' + $this.data('title') + '</span>\n          </div>\n          </a>';
-                    }
-                  });
-                });
-*/
-
       }
     }, {
       key: 'handleListItem',
@@ -485,9 +396,7 @@ alert(JSON.stringify(a.selectedIndex));
                alert( "error" );
              },
              success: function(data) {
-               //alert(2222);
-               //alert(data);
-               //s\alert(data.length);
+
                for(var i=0;i<data.length;i++){
                  var name=data[i]["name"];
                  var id=data[i]["id"];
